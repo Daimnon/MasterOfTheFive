@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour, IDropHandler, IPointerEnterHandle
 
     #region Indicators
     private GameObject _currentTarget;
+    public GameObject CurrentTarget { set => _currentTarget = value; }
+
     private Button _endPhaseBtn;
 
     private bool _isMyTurn, _isPhaseDone, _isNegating, _isOnStandby, _isOnDraw, _isOnAction, _isOnNegate, _isOnReaction, _isOnEnd, _tryAction;
@@ -181,6 +183,7 @@ public class PlayerController : MonoBehaviour, IDropHandler, IPointerEnterHandle
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        Debug.Log($"Set Target");
         eventData.pointerEnter = _currentTarget;
     }
 

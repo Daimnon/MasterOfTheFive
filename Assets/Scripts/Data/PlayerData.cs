@@ -51,13 +51,10 @@ public class PlayerData : MonoBehaviour
     //public bool IsDrawingWithLight = false;
 
     #region Monobehavior Callbacks
-    private void Awake()
+    private void Start()
     {
         PhotonNetwork.LocalPlayer.NickName = $"Player {PhotonNetwork.LocalPlayer.ActorNumber}";
         GameManager.Instance.PlayerList.Add(this);
-    }
-    private void Start()
-    {
         InitializePlayerComponents();
     }
 

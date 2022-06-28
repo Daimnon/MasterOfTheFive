@@ -28,6 +28,10 @@ public class Hand : MonoBehaviour, IDropHandler, IPointerClickHandler, IPointerE
         if (eventData.pointerDrag == null)
             return;
 
+        // this calls the OnPointerEnter of the player controller scripts sucsessfully
+        // Need to change all pointer event's to occur on player controller (the opposite of what's happening here)
+        _playerData.GetComponent<PlayerController>().OnPointerEnter(eventData);
+
         Aspect currentCard = eventData.pointerDrag.GetComponent<Aspect>();
 
         CurrentCardInHand = currentCard;
