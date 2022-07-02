@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour, IDropHandler, IPointerEnterHandle
     #region Monobehavior Callbacks
     private void Start()
     {
+        
         _currentState = StandbyPhase;
 
         //_endPhaseBtn = _myData.PlayerUI.transform.GetChild(4).GetComponent<Button>();
@@ -47,6 +48,7 @@ public class PlayerController : MonoBehaviour, IDropHandler, IPointerEnterHandle
 
     private void Update()
     {
+        _playerId = PhotonNetwork.LocalPlayer.ActorNumber;
         Debug.Log($"Turn Start: {name}");
         _currentState.Invoke();
 
@@ -83,8 +85,7 @@ public class PlayerController : MonoBehaviour, IDropHandler, IPointerEnterHandle
     {
         Debug.Log($"{name} inisiated: Initialization Phase");
 
-        StartCoroutine(_myData.InitializeMyComponents2());
-        //_myData.InitializePlayerComponentsRPC();
+        _myData.InitializePlayersDuelComponents();
         _endPhaseBtn = _myData.PlayerUI.transform.GetChild(4).GetComponent<Button>();
         _endPhaseBtn.onClick.AddListener(ChangePhase);
         _playerReady = true;
