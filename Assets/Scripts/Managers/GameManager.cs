@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     //#endregion
 
     public List<PlayerData> PlayerList;
+    public int PlayersInRoom = 0;
 
     private void Awake()
     {
@@ -25,6 +26,11 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void Update()
+    {
+        PlayersInRoom = PlayerList.Count;
     }
 
     private void Start()

@@ -22,6 +22,10 @@ public class PlayerController : MonoBehaviour, IDropHandler, IPointerEnterHandle
 
     private Button _endPhaseBtn;
 
+    private int _playerId = 0;
+    public int PlayerID { get => _playerId; set => _playerId = value; }
+
+    private bool _playerReady = false;
     private bool _isMyTurn, _isPhaseDone, _isNegating, _isOnStandby, _isOnDraw, _isOnAction, _isOnNegate, _isOnReaction, _isOnEnd, _tryAction;
     public bool IsMyTurn { get => _isMyTurn; set => _isMyTurn = value; }
     public bool IsNegating => _isNegating;
@@ -37,8 +41,8 @@ public class PlayerController : MonoBehaviour, IDropHandler, IPointerEnterHandle
     {
         _currentState = StandbyPhase;
 
-        _endPhaseBtn = _myData.PlayerUI.transform.GetChild(4).GetComponent<Button>();
-        _endPhaseBtn.onClick.AddListener(ChangePhase);
+        //_endPhaseBtn = _myData.PlayerUI.transform.GetChild(4).GetComponent<Button>();
+        //_endPhaseBtn.onClick.AddListener(ChangePhase);
     }
 
     private void Update()
@@ -55,6 +59,7 @@ public class PlayerController : MonoBehaviour, IDropHandler, IPointerEnterHandle
     #endregion
 
     #region States
+
     private void StandbyPhase()
     {
         Debug.Log($"{name} inisiated: Standby Phase");
@@ -63,10 +68,28 @@ public class PlayerController : MonoBehaviour, IDropHandler, IPointerEnterHandle
         _isOnEnd = false;
         _isOnStandby = true;
 
-        if (_isMyTurn)
+        if (GameManager.Instance.PlayersInRoom == 2 && _myData.CurrentGameMode == GameMode.Duel && !_playerReady)
+        {
+            _currentState = DuelInitializationPhase;
+        }
+
+        if (_isMyTurn && _myData.CurrentGameMode == GameMode.Duel && _playerReady)
         {
             _currentState = DrawPhase;
         }
+    }
+
+    private void DuelInitializationPhase()
+    {
+        Debug.Log($"{name} inisiated: Initialization Phase");
+
+        StartCoroutine(_myData.InitializeMyComponents2());
+        //_myData.InitializePlayerComponentsRPC();
+        _endPhaseBtn = _myData.PlayerUI.transform.GetChild(4).GetComponent<Button>();
+        _endPhaseBtn.onClick.AddListener(ChangePhase);
+        _playerReady = true;
+
+        _currentState = StandbyPhase;
     }
 
     private void DrawPhase()

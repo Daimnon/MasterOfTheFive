@@ -142,6 +142,7 @@ public class Deck : MonoBehaviour
     [PunRPC]
     public void DrawCard()
     {
+        Debug.Log("I draw card");
         //get top card in deck & adds it to the hand
         _playerData.Hand.CardsInHand.Add(_deckList[0]);
 

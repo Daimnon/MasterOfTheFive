@@ -6,7 +6,6 @@ using Photon.Pun;
 
 public class PlayerData : MonoBehaviour
 {
-    private GameMode _currentGameMode;
 
     #region Photon
     [Header("Photon")]
@@ -18,12 +17,15 @@ public class PlayerData : MonoBehaviour
     #endregion
 
     #region Game Components
+    private GameMode _currentGameMode;
     [SerializeField] private EventHandler _playerEventHandler;
+
     private Hand _hand;
     private Battlefield _battlefield;
     private Deck _deck;
     private Tomb _tomb;
 
+    public GameMode CurrentGameMode => _currentGameMode;
     public Hand Hand => _hand;
     public Battlefield Battlefield => _battlefield;
     public Deck Deck => _deck;
@@ -55,7 +57,7 @@ public class PlayerData : MonoBehaviour
     {
         PhotonNetwork.LocalPlayer.NickName = $"Player {PhotonNetwork.LocalPlayer.ActorNumber}";
         GameManager.Instance.PlayerList.Add(this);
-        InitializePlayerComponents();
+        //InitializePlayerComponents();
     }
 
     private void Update()
@@ -76,7 +78,59 @@ public class PlayerData : MonoBehaviour
     #endregion
 
     #region Methods
-    private void InitializePlayerComponents()
+    public IEnumerator InitializeMyComponents2()
+    {
+        yield return new WaitForSeconds(1);
+        _photonView.RPC("InitializeMyComponents", RpcTarget.All);
+        //InitializeMyComponents();
+    }
+
+    [PunRPC]
+    private void InitializeMyComponents()
+    {
+        _gameCanvas = GameObject.Find("Game Canvas");
+
+        if (_photonView.IsMine)
+        {
+            // Set PlayerUI & SacrificeOverlay by ActorNumber
+            if (PhotonNetwork.LocalPlayer.ActorNumber == 1)
+            {
+                _playerUI = _gameCanvas.transform.GetChild(0).gameObject;
+                _sacrificeOverlay = _gameCanvas.transform.GetChild(3).gameObject;
+            }
+            else if (PhotonNetwork.LocalPlayer.ActorNumber == 2)
+            {
+                _playerUI = _gameCanvas.transform.GetChild(1).gameObject;
+                _sacrificeOverlay = _gameCanvas.transform.GetChild(4).gameObject;
+            }
+
+            // Set GameObjects
+            _handGO = _playerUI.transform.GetChild(0).gameObject;
+            _battlefieldGO = _playerUI.transform.GetChild(1).gameObject;
+            _deckGO = _playerUI.transform.GetChild(2).gameObject;
+            _tombGO = _playerUI.transform.GetChild(3).gameObject;
+
+            // Set Scripts
+            _hand = _handGO.GetComponent<Hand>();
+            _battlefield = _battlefieldGO.GetComponent<Battlefield>();
+            _deck = _deckGO.GetComponent<Deck>();
+            _tomb = _tombGO.GetComponent<Tomb>();
+
+            // Set PlayerData
+            _hand.PlayerData = this;
+            _battlefield.PlayerData = this;
+            _deck.PlayerData = this;
+            _tomb.PlayerData = this;
+
+            // Set PlayerEventHandler
+            _battlefield.PlayerEventHandler = _playerEventHandler;
+            _tomb.PlayerEventHandler = _playerEventHandler;
+        }
+
+        return;
+    }
+
+    public void InitializePlayersComponents()
     {
         _gameCanvas = GameObject.Find("Game Canvas");
 
