@@ -10,10 +10,12 @@ public class DestructionAspect : AspectData
 		PrimodialPower = PowerType.Destruction;
 	}
 
-	public void Action(EventHandler eventHandler)
+	public void Action(PlayerData playerData)
 	{
+		Debug.Log("Perform Destruction Ability");
+
 		// fix needed
-		eventHandler.Destroy();
+		playerData.IsDestroying = true;
 	}
 
 	public void SupremeAction()

@@ -139,24 +139,48 @@ public class Deck : MonoBehaviour
         _currentDeckSize -= 4;
     }
 
-    public void DrawCard()
+    [PunRPC]
+    private void DrawCard()
     {
-        Debug.Log("I draw card");
+        if (_photonView.IsMine)
+        {
+            Debug.Log("I draw card");
 
-        //get top card in deck & adds it to the hand
-        _playerData.Hand.CardsInHand.Add(_deckList[0]);
+            //get top card in deck & adds it to the hand
+            _playerData.Hand.CardsInHand.Add(_deckList[0]);
 
-        //reads said card data and creates a prefab based on that data in the hand
-        _aspectPrefab.GetComponent<AspectDisplayData>().CardData = _deckList[0];
-        GameObject aspectToHand = PhotonNetwork.Instantiate(_aspectPrefab.name,Vector2.zero, Quaternion.identity);
-        aspectToHand.transform.parent = _playerData.Hand.transform;
-        //Instantiate(_aspectPrefab, _playerData.Hand.transform);
+            //reads said card data and creates a prefab based on that data in the hand
+            _aspectPrefab.GetComponent<AspectDisplayData>().CardData = _deckList[0];
+            GameObject aspectToHand = PhotonNetwork.Instantiate(_aspectPrefab.name, Vector2.zero, Quaternion.identity);
+            aspectToHand.transform.parent = _playerData.Hand.transform;
+            //Instantiate(_aspectPrefab, _playerData.Hand.transform);
 
-        //check if works (update: it does)
-        Debug.Log(_deckList[0].Name);
+            //check if works (update: it does)
+            Debug.Log(_deckList[0].Name);
 
-        _deckList.RemoveAt(0);
-        _currentDeckSize--;
+            _deckList.RemoveAt(0);
+            _currentDeckSize--;
+        }
+        else
+        {
+            Debug.Log("Not I draw card");
+
+            //get top card in deck & adds it to the hand
+            _playerData.Hand.CardsInHand.Add(_deckList[0]);
+
+            //reads said card data and creates a prefab based on that data in the hand
+            _aspectPrefab.GetComponent<AspectDisplayData>().CardData = _deckList[0];
+            GameObject aspectToHand = PhotonNetwork.Instantiate(_aspectPrefab.name, Vector2.zero, Quaternion.identity);
+            aspectToHand.transform.parent = _playerData.Hand.transform;
+            //Instantiate(_aspectPrefab, _playerData.Hand.transform);
+
+            //check if works (update: it does)
+            Debug.Log(_deckList[0].Name);
+
+            _deckList.RemoveAt(0);
+            _currentDeckSize--;
+        }
+        
     }
 
     [PunRPC]

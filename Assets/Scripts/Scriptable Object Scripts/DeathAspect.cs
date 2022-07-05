@@ -10,9 +10,12 @@ public class DeathAspect : AspectData {
 		PrimodialPower = PowerType.Death;
 	}
 
-	public void Action(EventHandler eventHandler)
+	public void Action(PlayerData playerData)
 	{
-		eventHandler.Sacrifice();
+		Debug.Log("Perform Death Ability");
+
+		playerData.IsSacrificing = true;
+		playerData.SacrificeOverlay.SetActive(true);
 	}
 
 	public void SupremeAction()

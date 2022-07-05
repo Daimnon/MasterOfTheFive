@@ -76,98 +76,98 @@ public class EventHandler : MonoBehaviour
     }
 
     // when the player place the card on the battlefield
-    public void BattlefieldPlaceCard(Aspect currentTarget)
-    {
-        //get current card
-        AspectData cardToField = currentTarget.gameObject.GetComponent<AspectDisplayData>().CardData;
+    //public void BattlefieldPlaceCard(Aspect currentTarget)
+    //{
+    //    //get current card
+    //    AspectData cardToField = currentTarget.gameObject.GetComponent<AspectDisplayData>().CardData;
+    //
+    //    //add current card to battlefield
+    //    _playerDataHandler.Battlefield.CardsInField.Add(cardToField);
+    //
+    //    //check if works
+    //    print(cardToField.Name);
+    //
+    //    //remove placed cards from hand
+    //    _playerDataHandler.Hand.CardsInHand.Remove(cardToField);
+    //
+    //    Action(cardToField);
+    //
+    //    currentTarget.IsOnBattlefield = true;
+    //
+    //    // get last placed card on field
+    //    _playerDataHandler.LastAspectPlacedOnBattelfield = currentTarget.gameObject;
+    //
+    //    // addintional code here ----- V
+    //
+    //    for (int i = 0; i < _playerDataHandler.Battlefield.CardsInField.Count; i++)
+    //    {
+    //        if (_playerDataHandler.Battlefield.CardsInField[i].PrimodialPower == PowerType.Light)
+    //        {
+    //            ifFiveIWin++;
+    //            break;
+    //        }
+    //    }
+    //
+    //    for (int i = 0; i < _playerDataHandler.Battlefield.CardsInField.Count; i++)
+    //    {
+    //        if (_playerDataHandler.Battlefield.CardsInField[i].PrimodialPower == PowerType.Death)
+    //        {
+    //            ifFiveIWin++;
+    //            break;
+    //        }
+    //    }
+    //
+    //    for (int i = 0; i < _playerDataHandler.Battlefield.CardsInField.Count; i++)
+    //    {
+    //        if (_playerDataHandler.Battlefield.CardsInField[i].PrimodialPower == PowerType.Control)
+    //        {
+    //            ifFiveIWin++;
+    //            break;
+    //        }
+    //    }
+    //
+    //    for (int i = 0; i < _playerDataHandler.Battlefield.CardsInField.Count; i++)
+    //    {
+    //        if (_playerDataHandler.Battlefield.CardsInField[i].PrimodialPower == PowerType.Destruction)
+    //        {
+    //            ifFiveIWin++;
+    //            break;
+    //        }
+    //    }
+    //
+    //    for (int i = 0; i < _playerDataHandler.Battlefield.CardsInField.Count; i++)
+    //    {
+    //        if (_playerDataHandler.Battlefield.CardsInField[i].PrimodialPower == PowerType.Life)
+    //        {
+    //            ifFiveIWin++;
+    //            break;
+    //        }
+    //    }
+    //
+    //    if (ifFiveIWin < 5)
+    //    {
+    //        Debug.Log("Counted " + ifFiveIWin);
+    //        ifFiveIWin = 0;
+    //    }
+    //    else
+    //    {
+    //        didIWin = true;
+    //    }
+    //}
 
-        //add current card to battlefield
-        _playerDataHandler.Battlefield.CardsInField.Add(cardToField);
-
-        //check if works
-        print(cardToField.Name);
-
-        //remove placed cards from hand
-        _playerDataHandler.Hand.CardsInHand.Remove(cardToField);
-
-        Action(cardToField);
-
-        currentTarget.IsOnBattlefield = true;
-
-        // get last placed card on field
-        _playerDataHandler.LastAspectPlacedOnBattelfield = currentTarget.gameObject;
-
-        // addintional code here ----- V
-
-        for (int i = 0; i < _playerDataHandler.Battlefield.CardsInField.Count; i++)
-        {
-            if (_playerDataHandler.Battlefield.CardsInField[i].PrimodialPower == PowerType.Light)
-            {
-                ifFiveIWin++;
-                break;
-            }
-        }
-
-        for (int i = 0; i < _playerDataHandler.Battlefield.CardsInField.Count; i++)
-        {
-            if (_playerDataHandler.Battlefield.CardsInField[i].PrimodialPower == PowerType.Death)
-            {
-                ifFiveIWin++;
-                break;
-            }
-        }
-
-        for (int i = 0; i < _playerDataHandler.Battlefield.CardsInField.Count; i++)
-        {
-            if (_playerDataHandler.Battlefield.CardsInField[i].PrimodialPower == PowerType.Control)
-            {
-                ifFiveIWin++;
-                break;
-            }
-        }
-
-        for (int i = 0; i < _playerDataHandler.Battlefield.CardsInField.Count; i++)
-        {
-            if (_playerDataHandler.Battlefield.CardsInField[i].PrimodialPower == PowerType.Destruction)
-            {
-                ifFiveIWin++;
-                break;
-            }
-        }
-
-        for (int i = 0; i < _playerDataHandler.Battlefield.CardsInField.Count; i++)
-        {
-            if (_playerDataHandler.Battlefield.CardsInField[i].PrimodialPower == PowerType.Life)
-            {
-                ifFiveIWin++;
-                break;
-            }
-        }
-
-        if (ifFiveIWin < 5)
-        {
-            Debug.Log("Counted " + ifFiveIWin);
-            ifFiveIWin = 0;
-        }
-        else
-        {
-            didIWin = true;
-        }
-    }
-
-    public void Action(AspectData card)
-    {
-        if (card is LightAspect)
-            (card as LightAspect).Action(this);
-        else if (card is DeathAspect)
-            (card as DeathAspect).Action(this);
-        else if (card is DestructionAspect)
-            (card as DestructionAspect).Action(this);
-        else if (card is LifeAspect)
-            (card as LifeAspect).Action(this);
-        else if (card is ControlAspect)
-            (card as ControlAspect).Action(this);
-    }
+    //public void Action(AspectData card)
+    //{
+    //    if (card is LightAspect)
+    //        (card as LightAspect).Action(this);
+    //    else if (card is DeathAspect)
+    //        (card as DeathAspect).Action(this);
+    //    else if (card is DestructionAspect)
+    //        (card as DestructionAspect).Action(this);
+    //    else if (card is LifeAspect)
+    //        (card as LifeAspect).Action(this);
+    //    else if (card is ControlAspect)
+    //        (card as ControlAspect).Action(this);
+    //}
 
     public void SupremeAction(AspectData card)
     {

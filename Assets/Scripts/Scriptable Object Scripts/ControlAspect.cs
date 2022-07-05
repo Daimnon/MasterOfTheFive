@@ -10,10 +10,9 @@ public class ControlAspect : AspectData
 		PrimodialPower = PowerType.Control;
 	}
 
-	public void Action(EventHandler eventHandler)
+	public void Action(PlayerData playerData)
 	{
-		// fix needed
-		eventHandler.DrawCard();
+		Debug.Log("Preform Control Ability");
 	}
 
 	public void SupremeAction()

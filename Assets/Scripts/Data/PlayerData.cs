@@ -32,10 +32,16 @@ public class PlayerData : MonoBehaviour
     #endregion
 
     #region GameObjects References
+    private Transform _lightFiledTransform, _deathFiledTransform, _controlFiledTransform, _destructionFiledTransform, _lifeFiledTransform;
     private GameObject _gameCanvas, _playerUI, _sacrificeOverlay;
     private GameObject _handGO, _battlefieldGO, _deckGO, _tombGO;
     private GameObject _lastAspectPlacedOnBattelfield;
 
+    public Transform LightFiledTransform => _lightFiledTransform;
+    public Transform DeathFiledTransform => _deathFiledTransform;
+    public Transform ControlFiledTransform => _controlFiledTransform;
+    public Transform DestructionFiledTransform => _destructionFiledTransform;
+    public Transform LifeFiledTransform => _lifeFiledTransform;
     public GameObject GameCanvas => _gameCanvas;
     public GameObject PlayerUI => _playerUI;
     public GameObject SacrificeOverlay => _sacrificeOverlay;
@@ -83,15 +89,15 @@ public class PlayerData : MonoBehaviour
         _gameCanvas = GameObject.Find("Game Canvas");
 
         // Set PlayerUI & SacrificeOverlay by ActorNumber
-        if (_photonView.OwnerActorNr == 1)
+        if (_photonView.ViewID == 1001)
         {
             _playerUI = _gameCanvas.transform.GetChild(0).gameObject;
-            _sacrificeOverlay = _gameCanvas.transform.GetChild(3).gameObject;
+            _sacrificeOverlay = _gameCanvas.transform.GetChild(2).gameObject;
         }
-        else if (_photonView.OwnerActorNr != 1)
+        else if (_photonView.ViewID == 2001)
         {
             _playerUI = _gameCanvas.transform.GetChild(1).gameObject;
-            _sacrificeOverlay = _gameCanvas.transform.GetChild(4).gameObject;
+            _sacrificeOverlay = _gameCanvas.transform.GetChild(3).gameObject;
         }
 
         // Set GameObjects
@@ -99,6 +105,13 @@ public class PlayerData : MonoBehaviour
         _battlefieldGO = _playerUI.transform.GetChild(1).gameObject;
         _deckGO = _playerUI.transform.GetChild(2).gameObject;
         _tombGO = _playerUI.transform.GetChild(3).gameObject;
+
+        // Set Battlefields
+        _lightFiledTransform = _battlefieldGO.transform.GetChild(0);
+        _deathFiledTransform = _battlefieldGO.transform.GetChild(1);
+        _controlFiledTransform = _battlefieldGO.transform.GetChild(2);
+        _destructionFiledTransform = _battlefieldGO.transform.GetChild(3);
+        _lifeFiledTransform = _battlefieldGO.transform.GetChild(4);
 
         // Set Scripts
         _hand = _handGO.GetComponent<Hand>();
@@ -113,7 +126,7 @@ public class PlayerData : MonoBehaviour
         _tomb.PlayerData = this;
 
         // Set PlayerEventHandler
-        _battlefield.PlayerEventHandler = _playerEventHandler;
+        //_battlefield.PlayerEventHandler = _playerEventHandler;
         _tomb.PlayerEventHandler = _playerEventHandler;
 
         return;
@@ -127,12 +140,12 @@ public class PlayerData : MonoBehaviour
         if (_photonView.ViewID == 1001)
         {
             _playerUI = _gameCanvas.transform.GetChild(0).gameObject;
-            _sacrificeOverlay = _gameCanvas.transform.GetChild(3).gameObject;
+            _sacrificeOverlay = _gameCanvas.transform.GetChild(2).gameObject;
         }
         else if (_photonView.ViewID == 2001)
         {
             _playerUI = _gameCanvas.transform.GetChild(1).gameObject;
-            _sacrificeOverlay = _gameCanvas.transform.GetChild(4).gameObject;
+            _sacrificeOverlay = _gameCanvas.transform.GetChild(3).gameObject;
         }
 
         // Set GameObjects
@@ -140,6 +153,13 @@ public class PlayerData : MonoBehaviour
         _battlefieldGO = _playerUI.transform.GetChild(1).gameObject;
         _deckGO = _playerUI.transform.GetChild(2).gameObject;
         _tombGO = _playerUI.transform.GetChild(3).gameObject;
+
+        // Set Battlefields
+        _lightFiledTransform = _battlefieldGO.transform.GetChild(0);
+        _deathFiledTransform = _battlefieldGO.transform.GetChild(1);
+        _controlFiledTransform = _battlefieldGO.transform.GetChild(2);
+        _destructionFiledTransform = _battlefieldGO.transform.GetChild(3);
+        _lifeFiledTransform = _battlefieldGO.transform.GetChild(4);
 
         // Set Scripts
         _hand = _handGO.GetComponent<Hand>();
@@ -154,7 +174,7 @@ public class PlayerData : MonoBehaviour
         _tomb.PlayerData = this;
 
         // Set PlayerEventHandler
-        _battlefield.PlayerEventHandler = _playerEventHandler;
+        //_battlefield.PlayerEventHandler = _playerEventHandler;
         _tomb.PlayerEventHandler = _playerEventHandler;
 
         return;

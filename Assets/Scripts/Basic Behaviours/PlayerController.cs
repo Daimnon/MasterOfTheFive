@@ -13,6 +13,9 @@ public class PlayerController : MonoBehaviour, IDropHandler, IPointerEnterHandle
     #region Data Reference
     [Header("Data Reference")]
     [SerializeField] private PlayerData _myData;
+
+    //[Header("Opponent Reference")]
+    //[SerializeField] private PlayerController _opponentPlayerController;
     #endregion
 
     #region Indicators
@@ -45,9 +48,13 @@ public class PlayerController : MonoBehaviour, IDropHandler, IPointerEnterHandle
     {
         _playerId = PhotonNetwork.LocalPlayer.ActorNumber;
         Debug.Log($"Turn Start: {name}");
-        _currentState.Invoke();
 
-        // if (_opponePlayerController.TryAction)
+        if (_myData.PhotonView.IsMine)
+        {
+            _currentState.Invoke();
+        }
+
+        // if (_opponentPlayerController.TryAction)
         // {
         //      _isNegating = true;
         //      _currentState = NegationPhase;
@@ -65,9 +72,19 @@ public class PlayerController : MonoBehaviour, IDropHandler, IPointerEnterHandle
         _isOnEnd = false;
         _isOnStandby = true;
 
+        // check if x amount of players are in the room and check the game mode and that the players are not ready
         if (GameManager.Instance.PlayersInRoom == 2 && _myData.CurrentGameMode == GameMode.Duel && !_playerReady)
         {
             _currentState = DuelInitializationPhase;
+
+            //if (_myData.PhotonView.ViewID == 1001)
+            //{
+            //    _opponentPlayerController = GameObject.Find("Player 2001").GetComponent<PlayerController>();
+            //}
+            //else if (_myData.PhotonView.ViewID == 2001)
+            //{
+            //    _opponentPlayerController = GameObject.Find("Player 1001").GetComponent<PlayerController>();
+            //}
         }
 
         if (_isMyTurn && _myData.CurrentGameMode == GameMode.Duel && _playerReady)
@@ -92,16 +109,23 @@ public class PlayerController : MonoBehaviour, IDropHandler, IPointerEnterHandle
     {
         Debug.Log($"{name} inisiated: Draw Phase");
 
+        if (!_isMyTurn)
+            return;
+
         _isOnStandby = false;
         _isOnDraw = true;
 
-        _myData.Deck.DrawCard();
+        _myData.Deck.PhotonView.RPC("DrawCard", RpcTarget.All);
+        //_myData.Deck.DrawCard();
         _currentState = ActionPhase;
     }
 
     private void ActionPhase()
     {
         Debug.Log($"{name} inisiated: Action Phase");
+
+        if (!_isMyTurn)
+            return;
 
         _isOnDraw = false;
         _isOnAction = true;
@@ -167,12 +191,19 @@ public class PlayerController : MonoBehaviour, IDropHandler, IPointerEnterHandle
 
     private void EndPhase()
     {
+
         Debug.Log($"{name} inisiated: End Phase");
 
         _isOnReaction = false;
         _isOnEnd = true;
 
         _isMyTurn = false;
+        //_opponentPlayerController.IsMyTurn = true;
+
+        if (!_myData.PhotonView.IsMine)
+        {
+            _isMyTurn = true;
+        }
         _currentState = StandbyPhase;
     }
     #endregion
@@ -221,6 +252,10 @@ public class PlayerController : MonoBehaviour, IDropHandler, IPointerEnterHandle
         if (!_isPhaseDone)
         {
             _isPhaseDone = true;
+        }
+        else
+        {
+            _isPhaseDone = false;
         }
 
         Debug.Log("Changed Phase");

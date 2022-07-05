@@ -10,9 +10,11 @@ public class LifeAspect : AspectData
 		PrimodialPower = PowerType.Life;
 	}
 
-	public void Action(EventHandler eventHandler)
+	public void Action(PlayerData playerData)
 	{
-		eventHandler.Revive();
+		Debug.Log("Perform Life Ability");
+		playerData.IsReviving = true;
+		playerData.Tomb.SearchTomb();
 	}
 
 	public void SupremeAction()

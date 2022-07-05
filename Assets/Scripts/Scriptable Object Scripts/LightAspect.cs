@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 [CreateAssetMenu(fileName = "Light Card", menuName = "Old Card/Light")]
 public class LightAspect : AspectData
@@ -10,9 +11,10 @@ public class LightAspect : AspectData
 		PrimodialPower = PowerType.Light;
 	}
 
-	public void Action(EventHandler eventHandler)
+	public void Action(PlayerData _playerData)
 	{
-		eventHandler.DrawCard();
+		Debug.Log("Perform Light Ability");
+		_playerData.Deck.PhotonView.RPC("DrawCard", RpcTarget.All);
 	}
 
 	public void SupremeAction()
