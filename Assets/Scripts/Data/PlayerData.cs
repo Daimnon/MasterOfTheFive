@@ -124,12 +124,12 @@ public class PlayerData : MonoBehaviour
         _gameCanvas = GameObject.Find("Game Canvas");
 
         // Set PlayerUI & SacrificeOverlay by ActorNumber
-        if (PhotonNetwork.LocalPlayer.NickName == PhotonNetwork.PlayerList[0].NickName)
+        if (_photonView.ViewID == 1001)
         {
             _playerUI = _gameCanvas.transform.GetChild(0).gameObject;
             _sacrificeOverlay = _gameCanvas.transform.GetChild(3).gameObject;
         }
-        else if (PhotonNetwork.LocalPlayer.NickName == PhotonNetwork.PlayerList[1].NickName)
+        else if (_photonView.ViewID == 2001)
         {
             _playerUI = _gameCanvas.transform.GetChild(1).gameObject;
             _sacrificeOverlay = _gameCanvas.transform.GetChild(4).gameObject;
