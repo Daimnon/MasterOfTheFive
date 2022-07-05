@@ -42,38 +42,38 @@ public class EventHandler : MonoBehaviour
         _playerDataHandler.Deck.PhotonView.RPC("InitializeGameShowCase", Photon.Pun.RpcTarget.AllBuffered);
     }
 
-    public void DrawCard()
-    {
-        _playerDataHandler.Deck.PhotonView.RPC("DrawCard", Photon.Pun.RpcTarget.AllBuffered);
-    }
-
-    public void DrawTwo()
-    {
-        _playerDataHandler.Deck.PhotonView.RPC("DrawTwo", Photon.Pun.RpcTarget.AllBuffered);
-    }
-
-    public void Revive()
-    {
-        _playerDataHandler.IsReviving = true;
-        _playerDataHandler.Tomb.SearchTomb();
-    }
-
-    public void Sacrifice()
-    {
-        _playerDataHandler.IsSacrificing = true;
-        _playerDataHandler.SacrificeOverlay.SetActive(true);
-
-        //_opponentDataHandler.IsSacrificing = true;
-        //_opponentDataHandler.SacrificeOverlay.SetActive(true);
-    }
-
-    // need fixing
-    public void Destroy()
-    {
-        _playerDataHandler.IsDestroying = true;
-        
-        //_myDataHandler.SacrificeOverlay.SetActive(true);
-    }
+    //public void DrawCard()
+    //{
+    //    _playerDataHandler.Deck.PhotonView.RPC("DrawCard", Photon.Pun.RpcTarget.AllBuffered);
+    //}
+    //
+    //public void DrawTwo()
+    //{
+    //    _playerDataHandler.Deck.PhotonView.RPC("DrawTwo", Photon.Pun.RpcTarget.AllBuffered);
+    //}
+    //
+    //public void Revive()
+    //{
+    //    _playerDataHandler.IsReviving = true;
+    //    _playerDataHandler.Tomb.SearchTomb();
+    //}
+    //
+    //public void Sacrifice()
+    //{
+    //    _playerDataHandler.IsSacrificing = true;
+    //    _playerDataHandler.SacrificeOverlay.SetActive(true);
+    //
+    //    //_opponentDataHandler.IsSacrificing = true;
+    //    //_opponentDataHandler.SacrificeOverlay.SetActive(true);
+    //}
+    //
+    //// need fixing
+    //public void Destroy()
+    //{
+    //    _playerDataHandler.IsDestroying = true;
+    //    
+    //    //_myDataHandler.SacrificeOverlay.SetActive(true);
+    //}
 
     // when the player place the card on the battlefield
     //public void BattlefieldPlaceCard(Aspect currentTarget)

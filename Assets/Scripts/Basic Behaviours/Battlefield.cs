@@ -31,6 +31,14 @@ public class Battlefield : MonoBehaviour, IDropHandler, IPointerEnterHandler, IP
     private int ifFiveIWin = 0;
     private bool didIWin = false;
 
+    private void Update()
+    {
+        if (didIWin)
+        {
+            Debug.Log("I Won");
+        }
+    }
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (eventData.pointerDrag == null)
