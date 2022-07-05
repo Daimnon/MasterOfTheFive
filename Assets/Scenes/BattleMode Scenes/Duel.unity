@@ -4420,6 +4420,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerList: []
+  PlayersInRoom: 0
 --- !u!4 &995320281
 Transform:
   m_ObjectHideFlags: 0
@@ -5213,7 +5214,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _photonView: {fileID: 0}
   _deckList: []
-  _aspectPrefab: {fileID: 1626021463518533258, guid: 798353e00ea222242af7c0f626c3af76, type: 3}
+  _aspectPrefab: {fileID: 1626021463518533258, guid: 3373b0913ca78b64e9002899654a2fb5, type: 3}
   _lightAspectData: {fileID: 11400000, guid: 835c7c29b8ba990408773727f94e49ea, type: 2}
   _deathAspectData: {fileID: 11400000, guid: 5f6397cf631d1f94a9c1be4d6f08bacd, type: 2}
   _destructionAspectData: {fileID: 11400000, guid: cdb7268e0176e5e489c06f4c40f9f714, type: 2}
@@ -10915,7 +10916,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _photonView: {fileID: 2127539939}
   _deckList: []
-  _aspectPrefab: {fileID: 1626021463518533258, guid: 798353e00ea222242af7c0f626c3af76, type: 3}
+  _aspectPrefab: {fileID: 1626021463518533258, guid: 3373b0913ca78b64e9002899654a2fb5, type: 3}
   _lightAspectData: {fileID: 11400000, guid: 835c7c29b8ba990408773727f94e49ea, type: 2}
   _deathAspectData: {fileID: 11400000, guid: 5f6397cf631d1f94a9c1be4d6f08bacd, type: 2}
   _destructionAspectData: {fileID: 11400000, guid: cdb7268e0176e5e489c06f4c40f9f714, type: 2}

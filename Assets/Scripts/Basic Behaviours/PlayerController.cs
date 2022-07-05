@@ -100,7 +100,7 @@ public class PlayerController : MonoBehaviour, IDropHandler, IPointerEnterHandle
         _isOnStandby = false;
         _isOnDraw = true;
 
-        _myData.Deck.PhotonView.RPC("DrawCard", RpcTarget.All);
+        _myData.Deck.DrawCard();
         _currentState = ActionPhase;
     }
 
@@ -163,7 +163,11 @@ public class PlayerController : MonoBehaviour, IDropHandler, IPointerEnterHandle
         _isOnReaction = true;
         // if not negated play action effect
 
-        _currentState = EndPhase;
+        if (_isPhaseDone)
+        {
+            _isPhaseDone = false;
+            _currentState = EndPhase;
+        }
     }
 
     private void EndPhase()
@@ -174,7 +178,6 @@ public class PlayerController : MonoBehaviour, IDropHandler, IPointerEnterHandle
         _isOnEnd = true;
 
         _isMyTurn = false;
-        _isPhaseDone = false;
         _currentState = StandbyPhase;
     }
     #endregion

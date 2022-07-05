@@ -57,7 +57,7 @@ public class PlayerData : MonoBehaviour
     {
         PhotonNetwork.LocalPlayer.NickName = $"Player {PhotonNetwork.LocalPlayer.ActorNumber}";
         GameManager.Instance.PlayerList.Add(this);
-        //InitializePlayerComponents();
+        InitializeMyComponents();
     }
 
     private void Update()

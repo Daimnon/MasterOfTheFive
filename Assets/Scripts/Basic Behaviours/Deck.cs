@@ -139,7 +139,6 @@ public class Deck : MonoBehaviour
         _currentDeckSize -= 4;
     }
 
-    [PunRPC]
     public void DrawCard()
     {
         Debug.Log("I draw card");
