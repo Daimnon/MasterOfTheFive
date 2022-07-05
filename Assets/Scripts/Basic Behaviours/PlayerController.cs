@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour, IDropHandler, IPointerEnterHandle
     #region Monobehavior Callbacks
     private void Start()
     {
+        gameObject.name = $"Player {PhotonNetwork.LocalPlayer.ActorNumber}";
         _currentState = StandbyPhase;
     }
 
