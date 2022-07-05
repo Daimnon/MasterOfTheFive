@@ -142,13 +142,15 @@ public class Deck : MonoBehaviour
     public void DrawCard()
     {
         Debug.Log("I draw card");
+
         //get top card in deck & adds it to the hand
         _playerData.Hand.CardsInHand.Add(_deckList[0]);
 
         //reads said card data and creates a prefab based on that data in the hand
         _aspectPrefab.GetComponent<AspectDisplayData>().CardData = _deckList[0];
-        GameObject aspectToHand = PhotonNetwork.Instantiate(_aspectPrefab.name, Vector2.zero, Quaternion.identity);
+        GameObject aspectToHand = PhotonNetwork.Instantiate(_aspectPrefab.name,Vector2.zero, Quaternion.identity);
         aspectToHand.transform.parent = _playerData.Hand.transform;
+        //Instantiate(_aspectPrefab, _playerData.Hand.transform);
 
         //check if works (update: it does)
         Debug.Log(_deckList[0].Name);

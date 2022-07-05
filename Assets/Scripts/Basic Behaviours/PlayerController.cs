@@ -10,7 +10,6 @@ public enum GameMode { Duel, Brawl, TeamFight}
 
 public class PlayerController : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
-
     #region Data Reference
     [Header("Data Reference")]
     [SerializeField] private PlayerData _myData;
@@ -39,11 +38,7 @@ public class PlayerController : MonoBehaviour, IDropHandler, IPointerEnterHandle
     #region Monobehavior Callbacks
     private void Start()
     {
-        
         _currentState = StandbyPhase;
-
-        //_endPhaseBtn = _myData.PlayerUI.transform.GetChild(4).GetComponent<Button>();
-        //_endPhaseBtn.onClick.AddListener(ChangePhase);
     }
 
     private void Update()

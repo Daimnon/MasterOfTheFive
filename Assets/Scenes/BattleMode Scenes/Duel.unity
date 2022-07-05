@@ -2259,12 +2259,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e231fe2920d4b0a4f90aa519c560ae55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _myDataHandler: {fileID: 0}
-  _opponentDataHandler: {fileID: 0}
-  _myEventHandler: {fileID: 0}
-  CardsInField: []
-  CurrentCardInBattlefield: {fileID: 0}
-  CurrentCardDataInBattlefield: {fileID: 0}
 --- !u!114 &590390397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2550,12 +2544,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fb10c67b7ba50d4db7b388aaba3a98e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _myDataHandler: {fileID: 0}
-  _opponentDataHandler: {fileID: 0}
-  _myEventHandler: {fileID: 0}
-  CardsInTomb: []
-  CurrentCardInHand: {fileID: 0}
-  CurrentCardDataInTomb: {fileID: 0}
 --- !u!114 &644866606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3897,14 +3885,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 442bcf27cfa2fdc448d4ef7d3268b874, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dataHandler: {fileID: 0}
-  _aspectsInDeck: []
-  _cardPrefab: {fileID: 1626021463518533258, guid: 798353e00ea222242af7c0f626c3af76, type: 3}
-  _lightCard: {fileID: 11400000, guid: e933b98903f95f14eaed4bdc68fb406c, type: 2}
-  _deathCard: {fileID: 11400000, guid: 60aa827cf1816cd4fa2e8c0e06552139, type: 2}
-  _destructionCard: {fileID: 11400000, guid: 47f538589d029c8478f2a29fd89a6175, type: 2}
-  _lifeCard: {fileID: 0}
-  _controlCard: {fileID: 11400000, guid: c55893f33d7ecae45b663e00b294a007, type: 2}
 --- !u!114 &881330101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4467,12 +4447,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fb10c67b7ba50d4db7b388aaba3a98e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _myDataHandler: {fileID: 0}
-  _opponentDataHandler: {fileID: 0}
-  _myEventHandler: {fileID: 0}
-  CardsInTomb: []
-  CurrentCardInHand: {fileID: 0}
-  CurrentCardDataInTomb: {fileID: 0}
 --- !u!114 &1055479013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4638,10 +4612,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff91d5b99c7f90749aa935e00c1bca9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dataHandler: {fileID: 0}
-  CardsInHand: []
-  CurrentCardInHand: {fileID: 0}
-  CurrentCardDataInHand: {fileID: 0}
 --- !u!114 &1067585941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4922,14 +4892,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 442bcf27cfa2fdc448d4ef7d3268b874, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dataHandler: {fileID: 0}
-  _aspectsInDeck: []
-  _cardPrefab: {fileID: 1626021463518533258, guid: 798353e00ea222242af7c0f626c3af76, type: 3}
-  _lightCard: {fileID: 11400000, guid: e933b98903f95f14eaed4bdc68fb406c, type: 2}
-  _deathCard: {fileID: 11400000, guid: 60aa827cf1816cd4fa2e8c0e06552139, type: 2}
-  _destructionCard: {fileID: 11400000, guid: 47f538589d029c8478f2a29fd89a6175, type: 2}
-  _lifeCard: {fileID: 0}
-  _controlCard: {fileID: 11400000, guid: c55893f33d7ecae45b663e00b294a007, type: 2}
 --- !u!114 &1130532861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5214,7 +5176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _photonView: {fileID: 0}
   _deckList: []
-  _aspectPrefab: {fileID: 1626021463518533258, guid: 3373b0913ca78b64e9002899654a2fb5, type: 3}
+  _aspectPrefab: {fileID: 1626021463518533258, guid: 61becc44b17251d48a87548f1488ac01, type: 3}
   _lightAspectData: {fileID: 11400000, guid: 835c7c29b8ba990408773727f94e49ea, type: 2}
   _deathAspectData: {fileID: 11400000, guid: 5f6397cf631d1f94a9c1be4d6f08bacd, type: 2}
   _destructionAspectData: {fileID: 11400000, guid: cdb7268e0176e5e489c06f4c40f9f714, type: 2}
@@ -5910,10 +5872,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff91d5b99c7f90749aa935e00c1bca9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dataHandler: {fileID: 0}
-  CardsInHand: []
-  CurrentCardInHand: {fileID: 0}
-  CurrentCardDataInHand: {fileID: 0}
 --- !u!114 &1319466427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7605,12 +7563,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e231fe2920d4b0a4f90aa519c560ae55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _myDataHandler: {fileID: 0}
-  _opponentDataHandler: {fileID: 0}
-  _myEventHandler: {fileID: 0}
-  CardsInField: []
-  CurrentCardInBattlefield: {fileID: 0}
-  CurrentCardDataInBattlefield: {fileID: 0}
 --- !u!114 &1614111159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10871,8 +10823,8 @@ GameObject:
   - component: {fileID: 2127539942}
   - component: {fileID: 2127539941}
   - component: {fileID: 2127539940}
-  - component: {fileID: 2127539939}
   - component: {fileID: 2127539944}
+  - component: {fileID: 2127539939}
   m_Layer: 5
   m_Name: Deck
   m_TagString: Untagged
@@ -10916,7 +10868,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _photonView: {fileID: 2127539939}
   _deckList: []
-  _aspectPrefab: {fileID: 1626021463518533258, guid: 3373b0913ca78b64e9002899654a2fb5, type: 3}
+  _aspectPrefab: {fileID: 1626021463518533258, guid: 61becc44b17251d48a87548f1488ac01, type: 3}
   _lightAspectData: {fileID: 11400000, guid: 835c7c29b8ba990408773727f94e49ea, type: 2}
   _deathAspectData: {fileID: 11400000, guid: 5f6397cf631d1f94a9c1be4d6f08bacd, type: 2}
   _destructionAspectData: {fileID: 11400000, guid: cdb7268e0176e5e489c06f4c40f9f714, type: 2}

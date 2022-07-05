@@ -14,6 +14,7 @@ public class SpawnManager : MonoBehaviour
     {
         GameObject player = PhotonNetwork.Instantiate(_player.name, Vector3.zero, Quaternion.identity);
         player.name = $"Player {PhotonNetwork.LocalPlayer.ActorNumber}";
+        Debug.Log($"{player.name}");
     }
 
     void Start()
