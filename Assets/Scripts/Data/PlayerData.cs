@@ -54,7 +54,8 @@ public class PlayerData : MonoBehaviour
     #region Monobehavior Callbacks
     private void Start()
     {
-        //PhotonNetwork.LocalPlayer.NickName = $"Player {PhotonNetwork.LocalPlayer.ActorNumber}";
+        PhotonNetwork.LocalPlayer.NickName = $"Player {_photonView.ViewID}";
+        gameObject.name = PhotonNetwork.LocalPlayer.NickName;
         GameManager.Instance.PlayerList.Add(this);
         InitializeMyComponents();
     }

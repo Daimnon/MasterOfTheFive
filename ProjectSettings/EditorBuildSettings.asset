@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Test/ConnectToServer.unity
+    guid: ad3ae47f3c26d76438eccea6cb9be399
+  - enabled: 0
     path: Assets/Scenes/Test/S_TestLobby.unity
     guid: d539450d6db0a2946845e099a5121d9e
   - enabled: 0
