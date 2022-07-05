@@ -27,6 +27,7 @@ public class Battlefield : MonoBehaviour, IDropHandler, IPointerEnterHandler, IP
     public AspectData LastCardDataInBattlefield;
 
     public PointerEventData ClickEventData;
+    private Transform _targetField;
 
     private int ifFiveIWin = 0;
     private bool didIWin = false;
@@ -60,6 +61,32 @@ public class Battlefield : MonoBehaviour, IDropHandler, IPointerEnterHandler, IP
     {
         if (LastCardInBattlefield != null)
         {
+            //switch (eventData.pointerDrag.GetComponent<AspectDisplayData>().CardData.PrimodialPower)
+            //{
+            //    case PowerType.Light:
+            //        _targetField = transform.GetChild(0);
+            //        break;
+            //
+            //    case PowerType.Death:
+            //        _targetField = transform.GetChild(1);
+            //        break;
+            //
+            //    case PowerType.Control:
+            //        _targetField = transform.GetChild(2);
+            //        break;
+            //
+            //    case PowerType.Destruction:
+            //        _targetField = transform.GetChild(3);
+            //        break;
+            //
+            //    case PowerType.Life:
+            //        _targetField = transform.GetChild(4);
+            //        break;
+            //
+            //    default:
+            //        break;
+            //}
+            //LastCardInBattlefield.ParentToReturn = _targetField;
             LastCardInBattlefield.ParentToReturn = transform;
             LastCardInBattlefield.IsCardInHand = false;
             BattlefieldPlaceCard(LastCardInBattlefield);
@@ -94,7 +121,6 @@ public class Battlefield : MonoBehaviour, IDropHandler, IPointerEnterHandler, IP
             _playerData.Tomb.CardToDestroy(eventData);
     }
 
-    [PunRPC]
     private void BattlefieldPlaceCard(Aspect currentTarget)
     {
         //get current card
