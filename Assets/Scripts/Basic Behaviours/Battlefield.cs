@@ -209,6 +209,12 @@ public class Battlefield : MonoBehaviour, IDropHandler, IPointerEnterHandler, IP
     }
 
     [PunRPC]
+    private void UpdateLists()
+    {
+
+    }
+
+    [PunRPC]
     private void BattlefieldPlaceCardRPC()
     {
         if (!_photonView.IsMine)
