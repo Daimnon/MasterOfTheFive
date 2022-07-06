@@ -155,7 +155,6 @@ public class Deck : MonoBehaviour
             _aspectPrefab.GetComponent<AspectDisplayData>().CardData = _deckList[0];
             GameObject aspectToHand = PhotonNetwork.Instantiate(_aspectPrefab.name, Vector2.zero, Quaternion.identity);
             aspectToHand.transform.parent = _playerData.Hand.transform;
-            //Instantiate(_aspectPrefab, _playerData.Hand.transform);
 
             //check if works (update: it does)
             Debug.Log(_deckList[0].Name);
@@ -170,22 +169,13 @@ public class Deck : MonoBehaviour
     {
         if (!_photonView.IsMine)
         {
+            PlayerData opponentData = _playerData.gameObject.GetComponent<PlayerController>().OpponentData;
             Debug.Log("I draw card");
 
-            //get top card in deck & adds it to the hand
-            _playerData.Hand.CardsInHand.Add(_deckList[0]);
-
-            //reads said card data and creates a prefab based on that data in the hand
-            _aspectBackPrefab.GetComponent<AspectDisplayData>().CardData = _deckList[0];
             GameObject aspectToHand = PhotonNetwork.Instantiate(_aspectBackPrefab.name, Vector2.zero, Quaternion.identity);
-            aspectToHand.transform.parent = _playerData.Hand.transform;
-            //Instantiate(_aspectPrefab, _playerData.Hand.transform);
+            aspectToHand.transform.parent = opponentData.Hand.transform;
 
             //check if works (update: it does)
-            Debug.Log(_deckList[0].Name);
-
-            _deckList.RemoveAt(0);
-            _currentDeckSize--;
         }
     }
 
@@ -205,7 +195,7 @@ public class Deck : MonoBehaviour
             Instantiate(_aspectPrefab, _playerData.Hand.transform);
 
             //check if works (update: it does)
-            print(card.Name);
+            Debug.Log(card.Name);
         }
 
         //remove drawn cards from deck

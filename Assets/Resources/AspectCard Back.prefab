@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fab225f1c9aa47b4d84afbdb7d93052a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CardData: {fileID: 11400000, guid: 1ad42b4f9e68b684587636a96dd598fb, type: 2}
+  CardData: {fileID: 11400000, guid: 3cd69a67ba7c2ac4294f39ab3e031a01, type: 2}
   ArtworkImage: {fileID: 7959633829859891840}
   CardTemplate: {fileID: 8686754593346325599}
   NameText: Name auto-generated

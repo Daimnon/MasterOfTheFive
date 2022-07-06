@@ -52,10 +52,7 @@ public class PlayerController : MonoBehaviour, IDropHandler, IPointerEnterHandle
         _playerId = PhotonNetwork.LocalPlayer.ActorNumber;
         Debug.Log($"Turn Start: {name}");
 
-        if (_myData.PhotonView.IsMine)
-        {
-            _currentState.Invoke();
-        }
+        _currentState.Invoke();
 
         // if (_opponentPlayerController.TryAction)
         // {
@@ -191,6 +188,9 @@ public class PlayerController : MonoBehaviour, IDropHandler, IPointerEnterHandle
     {
         Debug.Log($"{name} inisiated: Reaction Phase");
 
+        if (!_isMyTurn)
+            return;
+
         _isOnAction = false;
         _isOnReaction = true;
         // if not negated play action effect
@@ -204,6 +204,8 @@ public class PlayerController : MonoBehaviour, IDropHandler, IPointerEnterHandle
 
     private void EndPhase()
     {
+        if (!_isMyTurn)
+            return;
 
         Debug.Log($"{name} inisiated: End Phase");
 
