@@ -1823,7 +1823,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -765, y: -105}
+  m_AnchoredPosition: {x: -779, y: -105}
   m_SizeDelta: {x: 170, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &373790036
@@ -5172,7 +5172,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -765, y: 105}
+  m_AnchoredPosition: {x: -779, y: 105}
   m_SizeDelta: {x: 170, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1132375879
@@ -5327,6 +5327,7 @@ MonoBehaviour:
   _photonView: {fileID: 0}
   _deckList: []
   _aspectPrefab: {fileID: 1626021463518533258, guid: 61becc44b17251d48a87548f1488ac01, type: 3}
+  _aspectBackPrefab: {fileID: 1626021463518533258, guid: c5d16fd0b9b97a54eae74bc7234c6bf1, type: 3}
   _lightAspectData: {fileID: 11400000, guid: 835c7c29b8ba990408773727f94e49ea, type: 2}
   _deathAspectData: {fileID: 11400000, guid: 5f6397cf631d1f94a9c1be4d6f08bacd, type: 2}
   _destructionAspectData: {fileID: 11400000, guid: cdb7268e0176e5e489c06f4c40f9f714, type: 2}
@@ -8938,7 +8939,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 566.24963, y: 410.75055}
+  m_AnchoredPosition: {x: 779, y: -158.4992}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1815227011
@@ -9456,7 +9457,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -566.25, y: -410.75}
+  m_AnchoredPosition: {x: -779, y: -175}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1881378975
@@ -11249,6 +11250,7 @@ MonoBehaviour:
   _photonView: {fileID: 2127539939}
   _deckList: []
   _aspectPrefab: {fileID: 1626021463518533258, guid: 61becc44b17251d48a87548f1488ac01, type: 3}
+  _aspectBackPrefab: {fileID: 1626021463518533258, guid: c5d16fd0b9b97a54eae74bc7234c6bf1, type: 3}
   _lightAspectData: {fileID: 11400000, guid: 835c7c29b8ba990408773727f94e49ea, type: 2}
   _deathAspectData: {fileID: 11400000, guid: 5f6397cf631d1f94a9c1be4d6f08bacd, type: 2}
   _destructionAspectData: {fileID: 11400000, guid: cdb7268e0176e5e489c06f4c40f9f714, type: 2}

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2214949393908253868}
   - component: {fileID: -9106258811915473078}
   m_Layer: 5
-  m_Name: Aspect Prefab
+  m_Name: OLDAspectPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

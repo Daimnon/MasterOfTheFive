@@ -19,9 +19,11 @@ public class Deck : MonoBehaviour
 
     [Header("AspectList")]
     [SerializeField] private List<AspectData> _deckList = new List<AspectData>(25);
+    [SerializeField] public List<AspectData> DeckList => _deckList;
 
     [Header("AspectPrefab")]
     [SerializeField] private GameObject _aspectPrefab;
+    [SerializeField] private GameObject _aspectBackPrefab;
 
     [Header("AspectData")]
     [SerializeField] private AspectData _lightAspectData;
@@ -29,6 +31,7 @@ public class Deck : MonoBehaviour
     #endregion
 
     private int _maxDeckSize = 25, _currentDeckSize;
+    public int CurrentDeckSize { get => _currentDeckSize; set => _currentDeckSize = value; }
 
     private void Start()
     {
@@ -139,8 +142,7 @@ public class Deck : MonoBehaviour
         _currentDeckSize -= 4;
     }
 
-    [PunRPC]
-    private void DrawCard()
+    public void DrawCard()
     {
         if (_photonView.IsMine)
         {
@@ -161,16 +163,21 @@ public class Deck : MonoBehaviour
             _deckList.RemoveAt(0);
             _currentDeckSize--;
         }
-        else
+    }
+
+    [PunRPC]
+    private void DrawCardRPC()
+    {
+        if (!_photonView.IsMine)
         {
-            Debug.Log("Not I draw card");
+            Debug.Log("I draw card");
 
             //get top card in deck & adds it to the hand
             _playerData.Hand.CardsInHand.Add(_deckList[0]);
 
             //reads said card data and creates a prefab based on that data in the hand
-            _aspectPrefab.GetComponent<AspectDisplayData>().CardData = _deckList[0];
-            GameObject aspectToHand = PhotonNetwork.Instantiate(_aspectPrefab.name, Vector2.zero, Quaternion.identity);
+            _aspectBackPrefab.GetComponent<AspectDisplayData>().CardData = _deckList[0];
+            GameObject aspectToHand = PhotonNetwork.Instantiate(_aspectBackPrefab.name, Vector2.zero, Quaternion.identity);
             aspectToHand.transform.parent = _playerData.Hand.transform;
             //Instantiate(_aspectPrefab, _playerData.Hand.transform);
 
@@ -180,7 +187,6 @@ public class Deck : MonoBehaviour
             _deckList.RemoveAt(0);
             _currentDeckSize--;
         }
-        
     }
 
     [PunRPC]

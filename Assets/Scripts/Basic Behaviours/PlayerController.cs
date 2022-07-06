@@ -13,9 +13,12 @@ public class PlayerController : MonoBehaviour, IDropHandler, IPointerEnterHandle
     #region Data Reference
     [Header("Data Reference")]
     [SerializeField] private PlayerData _myData;
+    private PlayerData _opponentData;
+    public PlayerData OpponentData => _opponentData;
 
-    //[Header("Opponent Reference")]
-    //[SerializeField] private PlayerController _opponentPlayerController;
+    [Header("Opponent Reference")]
+    private PlayerController _opponentPlayerController;
+    public PlayerController OpponentPlayerController => _opponentPlayerController;
     #endregion
 
     #region Indicators
@@ -75,16 +78,18 @@ public class PlayerController : MonoBehaviour, IDropHandler, IPointerEnterHandle
         // check if x amount of players are in the room and check the game mode and that the players are not ready
         if (GameManager.Instance.PlayersInRoom == 2 && _myData.CurrentGameMode == GameMode.Duel && !_playerReady)
         {
-            _currentState = DuelInitializationPhase;
+            if (_myData.PhotonView.ViewID == 1001)
+            {
+                _opponentData = GameObject.Find("Player 2001").GetComponent<PlayerData>();
+                _opponentPlayerController = GameObject.Find("Player 2001").GetComponent<PlayerController>();
+            }
+            else if (_myData.PhotonView.ViewID == 2001)
+            {
+                _opponentData = GameObject.Find("Player 1001").GetComponent<PlayerData>();
+                _opponentPlayerController = GameObject.Find("Player 1001").GetComponent<PlayerController>();
+            }
 
-            //if (_myData.PhotonView.ViewID == 1001)
-            //{
-            //    _opponentPlayerController = GameObject.Find("Player 2001").GetComponent<PlayerController>();
-            //}
-            //else if (_myData.PhotonView.ViewID == 2001)
-            //{
-            //    _opponentPlayerController = GameObject.Find("Player 1001").GetComponent<PlayerController>();
-            //}
+            _currentState = DuelInitializationPhase;
         }
 
         if (_isMyTurn && _myData.CurrentGameMode == GameMode.Duel && _playerReady)
@@ -102,6 +107,14 @@ public class PlayerController : MonoBehaviour, IDropHandler, IPointerEnterHandle
         _endPhaseBtn.onClick.AddListener(ChangePhase);
         _playerReady = true;
 
+        if (gameObject.name == "Player 1001")
+        {
+            GameObject opponentPlayer = GameObject.Find("Player 2001");
+            _opponentPlayerController = opponentPlayer.GetComponent<PlayerController>();
+            _opponentData = opponentPlayer.GetComponent<PlayerData>();
+
+        }
+
         _currentState = StandbyPhase;
     }
 
@@ -115,8 +128,8 @@ public class PlayerController : MonoBehaviour, IDropHandler, IPointerEnterHandle
         _isOnStandby = false;
         _isOnDraw = true;
 
-        _myData.Deck.PhotonView.RPC("DrawCard", RpcTarget.All);
-        //_myData.Deck.DrawCard();
+        _myData.Deck.DrawCard();
+        _myData.Deck.PhotonView.RPC("DrawCardRPC", RpcTarget.Others);
         _currentState = ActionPhase;
     }
 
