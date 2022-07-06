@@ -142,7 +142,8 @@ public class Deck : MonoBehaviour
         _currentDeckSize -= 4;
     }
 
-    public void DrawCard()
+    [PunRPC]
+    private void DrawCard()
     {
         if (_photonView.IsMine)
         {
