@@ -59,7 +59,7 @@ public class Battlefield : MonoBehaviour, IDropHandler, IPointerEnterHandler, IP
 
     public void OnDrop(PointerEventData eventData)
     {
-        _photonView.RPC("DropCardRPC", RpcTarget.All);
+        DropCard();
         //if (LastCardInBattlefield != null)
         //{
         //    //switch (eventData.pointerDrag.GetComponent<AspectDisplayData>().CardData.PrimodialPower)
@@ -214,6 +214,10 @@ public class Battlefield : MonoBehaviour, IDropHandler, IPointerEnterHandler, IP
     [PunRPC]
     private void DropCardRPC()
     {
+        _playerData.GetComponent<PlayerController>().OpponentData.Battlefield.LastCardInBattlefield.ParentToReturn = transform;
+    }
+    private void DropCard()
+    {
         if (LastCardInBattlefield != null)
         {
             //switch (eventData.pointerDrag.GetComponent<AspectDisplayData>().CardData.PrimodialPower)
@@ -246,7 +250,7 @@ public class Battlefield : MonoBehaviour, IDropHandler, IPointerEnterHandler, IP
             LastCardInBattlefield.ParentToReturn = transform;
             LastCardInBattlefield.IsCardInHand = false;
             BattlefieldPlaceCard(LastCardInBattlefield);
-
+            _photonView.RPC("DropCardRPC", RpcTarget.Others);
             LastCardInBattlefield = null;
             LastCardDataInBattlefield = null;
 
