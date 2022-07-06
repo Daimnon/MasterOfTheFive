@@ -14,7 +14,7 @@ public class LightAspect : AspectData
 	public void Action(PlayerData _playerData)
 	{
 		Debug.Log("Perform Light Ability");
-		_playerData.Deck.PhotonView.RPC("DrawCard", RpcTarget.All);
+		_playerData.Deck.DrawCard();
 	}
 
 	public void SupremeAction()

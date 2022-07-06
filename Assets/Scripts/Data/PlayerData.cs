@@ -32,16 +32,16 @@ public class PlayerData : MonoBehaviour
     #endregion
 
     #region GameObjects References
-    private Transform _lightFiledTransform, _deathFiledTransform, _controlFiledTransform, _destructionFiledTransform, _lifeFiledTransform;
+    private Transform _lightFieldTransform, _deathFieldTransform, _controlFieldTransform, _destructionFieldTransform, _lifeFieldTransform;
     private GameObject _gameCanvas, _playerUI, _sacrificeOverlay;
     private GameObject _handGO, _battlefieldGO, _deckGO, _tombGO;
     private GameObject _lastAspectPlacedOnBattelfield;
 
-    public Transform LightFiledTransform => _lightFiledTransform;
-    public Transform DeathFiledTransform => _deathFiledTransform;
-    public Transform ControlFiledTransform => _controlFiledTransform;
-    public Transform DestructionFiledTransform => _destructionFiledTransform;
-    public Transform LifeFiledTransform => _lifeFiledTransform;
+    public Transform LightFieldTransform => _lightFieldTransform;
+    public Transform DeathFieldTransform => _deathFieldTransform;
+    public Transform ControlFieldTransform => _controlFieldTransform;
+    public Transform DestructionFieldTransform => _destructionFieldTransform;
+    public Transform LifeFieldTransform => _lifeFieldTransform;
     public GameObject GameCanvas => _gameCanvas;
     public GameObject PlayerUI => _playerUI;
     public GameObject SacrificeOverlay => _sacrificeOverlay;
@@ -50,6 +50,13 @@ public class PlayerData : MonoBehaviour
     public GameObject DeckGO => _deckGO;
     public GameObject TombGO => _tombGO;
     public GameObject LastAspectPlacedOnBattelfield { get => _lastAspectPlacedOnBattelfield; set => _lastAspectPlacedOnBattelfield = value; }
+
+    [Header("Aspects Prefabs")]
+    [SerializeField] private GameObject _aspectPrefab;
+    [SerializeField] private GameObject _aspectBackPrefab;
+
+    public GameObject AspectPrefab => _aspectPrefab;
+    public GameObject AspectBackPrefab => _aspectBackPrefab;
     #endregion
 
     public bool IsReviving = false;
@@ -107,11 +114,11 @@ public class PlayerData : MonoBehaviour
         _tombGO = _playerUI.transform.GetChild(3).gameObject;
 
         // Set Battlefields
-        _lightFiledTransform = _battlefieldGO.transform.GetChild(0);
-        _deathFiledTransform = _battlefieldGO.transform.GetChild(1);
-        _controlFiledTransform = _battlefieldGO.transform.GetChild(2);
-        _destructionFiledTransform = _battlefieldGO.transform.GetChild(3);
-        _lifeFiledTransform = _battlefieldGO.transform.GetChild(4);
+        _lightFieldTransform = _battlefieldGO.transform.GetChild(0);
+        _deathFieldTransform = _battlefieldGO.transform.GetChild(1);
+        _controlFieldTransform = _battlefieldGO.transform.GetChild(2);
+        _destructionFieldTransform = _battlefieldGO.transform.GetChild(3);
+        _lifeFieldTransform = _battlefieldGO.transform.GetChild(4);
 
         // Set Scripts
         _hand = _handGO.GetComponent<Hand>();
@@ -155,11 +162,11 @@ public class PlayerData : MonoBehaviour
         _tombGO = _playerUI.transform.GetChild(3).gameObject;
 
         // Set Battlefields
-        _lightFiledTransform = _battlefieldGO.transform.GetChild(0);
-        _deathFiledTransform = _battlefieldGO.transform.GetChild(1);
-        _controlFiledTransform = _battlefieldGO.transform.GetChild(2);
-        _destructionFiledTransform = _battlefieldGO.transform.GetChild(3);
-        _lifeFiledTransform = _battlefieldGO.transform.GetChild(4);
+        _lightFieldTransform = _battlefieldGO.transform.GetChild(0);
+        _deathFieldTransform = _battlefieldGO.transform.GetChild(1);
+        _controlFieldTransform = _battlefieldGO.transform.GetChild(2);
+        _destructionFieldTransform = _battlefieldGO.transform.GetChild(3);
+        _lifeFieldTransform = _battlefieldGO.transform.GetChild(4);
 
         // Set Scripts
         _hand = _handGO.GetComponent<Hand>();

@@ -48,6 +48,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _photonView: {fileID: 5902628870577411944}
   _playerEventHandler: {fileID: 8650203128958104919}
+  _aspectPrefab: {fileID: 1626021463518533258, guid: 61becc44b17251d48a87548f1488ac01, type: 3}
+  _aspectBackPrefab: {fileID: 1626021463518533258, guid: c5d16fd0b9b97a54eae74bc7234c6bf1, type: 3}
   IsReviving: 0
   IsSacrificing: 0
   IsDestroying: 0

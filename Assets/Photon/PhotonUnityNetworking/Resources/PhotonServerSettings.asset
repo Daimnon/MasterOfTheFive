@@ -49,6 +49,7 @@ MonoBehaviour:
   - DrawCardRPC
   - DropCardRPC
   - BattlefieldPlaceCardRPC
+  - GetLastCardInBattlefield
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

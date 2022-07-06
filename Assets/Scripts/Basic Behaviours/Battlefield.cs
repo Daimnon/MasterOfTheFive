@@ -147,6 +147,11 @@ public class Battlefield : MonoBehaviour, IDropHandler, IPointerEnterHandler, IP
 
         _photonView.RPC("BattlefieldPlaceCardRPC", RpcTarget.Others);
 
+        CheckWinCondition();
+    }
+
+    private void CheckWinCondition()
+    {
         for (int i = 0; i < _playerData.Battlefield.CardsInField.Count; i++)
         {
             if (_playerData.Battlefield.CardsInField[i].PrimodialPower == PowerType.Light)
@@ -206,16 +211,24 @@ public class Battlefield : MonoBehaviour, IDropHandler, IPointerEnterHandler, IP
     [PunRPC]
     private void BattlefieldPlaceCardRPC()
     {
-        Debug.Log("I don't place card");
-        PlayerData opponentData = _playerData.gameObject.GetComponent<PlayerController>().OpponentData;
-        opponentData.Battlefield.LastCardInBattlefield.transform.SetParent(opponentData.Battlefield.transform);
+        if (!_photonView.IsMine)
+        {
+            Debug.Log("I draw card");
+            PlayerData opponentData = _playerData.gameObject.GetComponent<PlayerController>().OpponentData;
+
+            GameObject aspectToBattlefield = PhotonNetwork.Instantiate(_playerData.AspectPrefab.name, Vector2.zero, Quaternion.identity);
+
+            aspectToBattlefield.GetComponent<AspectDisplayData>().CardData = opponentData.Battlefield.CardsInField[CardsInField.Count];
+
+            aspectToBattlefield.transform.parent = opponentData.Battlefield.transform;
+        }
     }
 
-    [PunRPC]
-    private void DropCardRPC()
-    {
-        _playerData.GetComponent<PlayerController>().OpponentData.Battlefield.LastCardInBattlefield.ParentToReturn = transform;
-    }
+    //[PunRPC]
+    //private void DropCardRPC()
+    //{
+    //    _playerData.GetComponent<PlayerController>().OpponentData.Battlefield.LastCardInBattlefield.ParentToReturn = transform;
+    //}
     private void DropCard()
     {
         if (LastCardInBattlefield != null)
@@ -250,7 +263,7 @@ public class Battlefield : MonoBehaviour, IDropHandler, IPointerEnterHandler, IP
             LastCardInBattlefield.ParentToReturn = transform;
             LastCardInBattlefield.IsCardInHand = false;
             BattlefieldPlaceCard(LastCardInBattlefield);
-            _photonView.RPC("DropCardRPC", RpcTarget.Others);
+            //_photonView.RPC("DropCardRPC", RpcTarget.Others);
             LastCardInBattlefield = null;
             LastCardDataInBattlefield = null;
 

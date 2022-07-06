@@ -49,8 +49,7 @@ public class PlayerController : MonoBehaviour, IDropHandler, IPointerEnterHandle
 
     private void Update()
     {
-        _playerId = PhotonNetwork.LocalPlayer.ActorNumber;
-        Debug.Log($"Turn Start: {name}");
+        _playerId = _myData.PhotonView.ViewID;
 
         _currentState.Invoke();
 
@@ -109,7 +108,12 @@ public class PlayerController : MonoBehaviour, IDropHandler, IPointerEnterHandle
             GameObject opponentPlayer = GameObject.Find("Player 2001");
             _opponentPlayerController = opponentPlayer.GetComponent<PlayerController>();
             _opponentData = opponentPlayer.GetComponent<PlayerData>();
-
+        }
+        else if (gameObject.name == "Player 2001")
+        {
+            GameObject opponentPlayer = GameObject.Find("Player 1001");
+            _opponentPlayerController = opponentPlayer.GetComponent<PlayerController>();
+            _opponentData = opponentPlayer.GetComponent<PlayerData>();
         }
 
         _currentState = StandbyPhase;
