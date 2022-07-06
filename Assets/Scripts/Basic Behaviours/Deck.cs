@@ -162,6 +162,8 @@ public class Deck : MonoBehaviour
             _deckList.RemoveAt(0);
             _currentDeckSize--;
         }
+
+        _photonView.RPC("DrawCardRPC", RpcTarget.Others);
     }
 
     [PunRPC]
@@ -169,13 +171,11 @@ public class Deck : MonoBehaviour
     {
         if (!_photonView.IsMine)
         {
-            PlayerData opponentData = _playerData.gameObject.GetComponent<PlayerController>().OpponentData;
             Debug.Log("I draw card");
+            PlayerData opponentData = _playerData.gameObject.GetComponent<PlayerController>().OpponentData;
 
             GameObject aspectToHand = PhotonNetwork.Instantiate(_aspectBackPrefab.name, Vector2.zero, Quaternion.identity);
             aspectToHand.transform.parent = opponentData.Hand.transform;
-
-            //check if works (update: it does)
         }
     }
 

@@ -126,7 +126,6 @@ public class PlayerController : MonoBehaviour, IDropHandler, IPointerEnterHandle
         _isOnDraw = true;
 
         _myData.Deck.DrawCard();
-        _myData.Deck.PhotonView.RPC("DrawCardRPC", RpcTarget.Others);
         _currentState = ActionPhase;
     }
 

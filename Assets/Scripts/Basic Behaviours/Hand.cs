@@ -52,7 +52,7 @@ public class Hand : MonoBehaviour, IDropHandler, IPointerClickHandler, IPointerE
         if (eventData.pointerDrag == null)
             return;
 
-        print("card Placed");
+        Debug.Log("card Placed");
 
         if (CurrentCardInHand.IsCardInHand)
             CurrentCardInHand.ParentToReturn = transform;

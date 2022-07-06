@@ -59,42 +59,43 @@ public class Battlefield : MonoBehaviour, IDropHandler, IPointerEnterHandler, IP
 
     public void OnDrop(PointerEventData eventData)
     {
-        if (LastCardInBattlefield != null)
-        {
-            //switch (eventData.pointerDrag.GetComponent<AspectDisplayData>().CardData.PrimodialPower)
-            //{
-            //    case PowerType.Light:
-            //        _targetField = transform.GetChild(0);
-            //        break;
-            //
-            //    case PowerType.Death:
-            //        _targetField = transform.GetChild(1);
-            //        break;
-            //
-            //    case PowerType.Control:
-            //        _targetField = transform.GetChild(2);
-            //        break;
-            //
-            //    case PowerType.Destruction:
-            //        _targetField = transform.GetChild(3);
-            //        break;
-            //
-            //    case PowerType.Life:
-            //        _targetField = transform.GetChild(4);
-            //        break;
-            //
-            //    default:
-            //        break;
-            //}
-            //LastCardInBattlefield.ParentToReturn = _targetField;
-            LastCardInBattlefield.ParentToReturn = transform;
-            LastCardInBattlefield.IsCardInHand = false;
-            BattlefieldPlaceCard(LastCardInBattlefield);
-            LastCardInBattlefield = null;
-            LastCardDataInBattlefield = null;
-
-            Debug.Log("card Placed");
-        }
+        DropCard();
+        //if (LastCardInBattlefield != null)
+        //{
+        //    //switch (eventData.pointerDrag.GetComponent<AspectDisplayData>().CardData.PrimodialPower)
+        //    //{
+        //    //    case PowerType.Light:
+        //    //        _targetField = transform.GetChild(0);
+        //    //        break;
+        //    //
+        //    //    case PowerType.Death:
+        //    //        _targetField = transform.GetChild(1);
+        //    //        break;
+        //    //
+        //    //    case PowerType.Control:
+        //    //        _targetField = transform.GetChild(2);
+        //    //        break;
+        //    //
+        //    //    case PowerType.Destruction:
+        //    //        _targetField = transform.GetChild(3);
+        //    //        break;
+        //    //
+        //    //    case PowerType.Life:
+        //    //        _targetField = transform.GetChild(4);
+        //    //        break;
+        //    //
+        //    //    default:
+        //    //        break;
+        //    //}
+        //    //LastCardInBattlefield.ParentToReturn = _targetField;
+        //    LastCardInBattlefield.ParentToReturn = transform;
+        //    LastCardInBattlefield.IsCardInHand = false;
+        //    BattlefieldPlaceCard(LastCardInBattlefield);
+        //    LastCardInBattlefield = null;
+        //    LastCardDataInBattlefield = null;
+        //
+        //    Debug.Log("card Placed");
+        //}
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -143,6 +144,8 @@ public class Battlefield : MonoBehaviour, IDropHandler, IPointerEnterHandler, IP
         _playerData.LastAspectPlacedOnBattelfield = currentTarget.gameObject;
 
         // addintional code here ----- V
+
+        _photonView.RPC("BattlefieldPlaceCardRPC", RpcTarget.Others);
 
         for (int i = 0; i < _playerData.Battlefield.CardsInField.Count; i++)
         {
@@ -197,6 +200,61 @@ public class Battlefield : MonoBehaviour, IDropHandler, IPointerEnterHandler, IP
         else
         {
             didIWin = true;
+        }
+    }
+
+    [PunRPC]
+    private void BattlefieldPlaceCardRPC()
+    {
+        Debug.Log("I don't place card");
+        PlayerData opponentData = _playerData.gameObject.GetComponent<PlayerController>().OpponentData;
+        opponentData.Battlefield.LastCardInBattlefield.transform.SetParent(opponentData.Battlefield.transform);
+    }
+
+    [PunRPC]
+    private void DropCardRPC()
+    {
+        _playerData.GetComponent<PlayerController>().OpponentData.Battlefield.LastCardInBattlefield.ParentToReturn = transform;
+    }
+    private void DropCard()
+    {
+        if (LastCardInBattlefield != null)
+        {
+            //switch (eventData.pointerDrag.GetComponent<AspectDisplayData>().CardData.PrimodialPower)
+            //{
+            //    case PowerType.Light:
+            //        _targetField = transform.GetChild(0);
+            //        break;
+            //
+            //    case PowerType.Death:
+            //        _targetField = transform.GetChild(1);
+            //        break;
+            //
+            //    case PowerType.Control:
+            //        _targetField = transform.GetChild(2);
+            //        break;
+            //
+            //    case PowerType.Destruction:
+            //        _targetField = transform.GetChild(3);
+            //        break;
+            //
+            //    case PowerType.Life:
+            //        _targetField = transform.GetChild(4);
+            //        break;
+            //
+            //    default:
+            //        break;
+            //}
+            //LastCardInBattlefield.ParentToReturn = _targetField;
+
+            LastCardInBattlefield.ParentToReturn = transform;
+            LastCardInBattlefield.IsCardInHand = false;
+            BattlefieldPlaceCard(LastCardInBattlefield);
+            _photonView.RPC("DropCardRPC", RpcTarget.Others);
+            LastCardInBattlefield = null;
+            LastCardDataInBattlefield = null;
+
+            Debug.Log("card Placed");
         }
     }
 

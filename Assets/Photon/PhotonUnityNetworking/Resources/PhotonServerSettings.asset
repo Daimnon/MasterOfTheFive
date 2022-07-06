@@ -47,6 +47,8 @@ MonoBehaviour:
   - InitializeMyComponents
   - BattlefieldPlaceCard
   - DrawCardRPC
+  - DropCardRPC
+  - BattlefieldPlaceCardRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
